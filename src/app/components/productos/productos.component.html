@@ -20,8 +20,14 @@
                 <th>{{producto.cantidadExistente}}</th>
                 <th>$ {{producto.valorUnitario}}</th>
                 <th *ngIf="acciones" class="text-center">
-                    <button (click)="selecion(i)" class="btn btn-success mx-1" data-bs-toggle="modal" data-bs-target="#modificarModal">Modificar</button>
-                    <button (click)="selecion(i)" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#eliminarModal">Eliminar</button>
+                    <div *ngIf="vende">
+                      <button (click)="selecion(i)" class="btn btn-success mx-1" data-bs-toggle="modal" data-bs-target="#modificarModal">Modificar</button>
+                      <button (click)="selecion(i)" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#eliminarModal">Eliminar</button>
+                    </div>
+                    <div *ngIf="vender">
+                      <button class="btn btn-info text-white">Vender</button>
+                    </div>
+                    
                 </th>
             </tr>
         </tbody>

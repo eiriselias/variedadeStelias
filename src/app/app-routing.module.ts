@@ -1,12 +1,15 @@
 import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ProductosComponent } from './components/productos/productos.component';
+import { VenderComponent } from './components/vender/vender.component';
 
 
 
 const routes: Routes = [  
-    {path:"**", component:ProductosComponent},
-    {path:"productos",component:ProductosComponent}
+    
+    {path:"productos",component:ProductosComponent},
+    {path:"vender", component:VenderComponent},
+    {path:"**", redirectTo:'productos', pathMatch:'full'}
 ];
 
 @NgModule({
