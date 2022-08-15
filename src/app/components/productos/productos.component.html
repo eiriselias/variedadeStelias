@@ -7,21 +7,81 @@
                 <th scope="col">Categoria</th>
                 <th scope="col">Descripcion</th>
                 <th scope="col">Cantidad</th>
+                <th scope="col">Valor</th>
                 <th *ngIf="acciones" class="text-center">accion</th>
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let producto of productos; index as i" (click)="verAcciones(i)">
-                <th scope="row">{{producto.id}}</th>
+            <tr *ngFor="let producto of productos; index as i" (click)="verAcciones()">
+                <th scope="row">{{i+1}}</th>
                 <th>{{producto.nombre}}</th>
                 <th>{{producto.categoria}}</th>
                 <th>{{producto.descripcion}}</th>
                 <th>{{producto.cantidadExistente}}</th>
-                <th *ngIf="acciones">
-                    <button class="btn btn-success mx-1">Modificar</button>
-                    <button class="btn btn-danger">Eliminar</button>
+                <th>$ {{producto.valorUnitario}}</th>
+                <th *ngIf="acciones" class="text-center">
+                    <button (click)="selecion(i)" class="btn btn-success mx-1" data-bs-toggle="modal" data-bs-target="#modificarModal">Modificar</button>
+                    <button (click)="selecion(i)" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#eliminarModal">Eliminar</button>
                 </th>
             </tr>
         </tbody>
     </table>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="modificarModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-success text-white">
+          <h5 class="modal-title" id="staticBackdropLabel">Modificar Producto</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="modificarProducto">
+            <div class="mb-3">
+              <label for="nombreProducto" class="form-label">Nombre</label>
+              <input type="text" formControlName="nombre" class="form-control" id="nombreProducto">
+            </div>
+            <div class="mb-3">
+              <label for="categoriaProducto" class="form-label">Categoria</label>
+              <input type="text" formControlName="categoria" class="form-control" id="categoriaProducto">
+            </div>
+            <div class="mb-3">
+              <label for="descripcionProducto" class="form-label">Descripcion</label>
+              <input type="text" formControlName="descripcion" class="form-control" id="descripcionProducto">
+            </div>
+            <div class="mb-3">
+              <label for="cantidadProducto" class="form-label">Cantidad</label>
+              <input type="number" formControlName="cantidadExistente" class="form-control" id="cantidadProducto">
+            </div>
+            <div class="mb-3">
+              <label for="valorProducto" class="form-label">Valor Unitario</label>
+              <input type="number" formControlName="valorUnitario" class="form-control" id="valorProducto">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-success" data-bs-dismiss="modal"(click)="modificar()">Modificar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Modal -->
+<div class="modal fade" id="eliminarModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-danger text-white">
+        <h5 class="modal-title" id="staticBackdropLabel">Eliminar Producto</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body"> 
+        <h3>Realmente desea eliminar el producto {{productos[id].nombre}}?</h3>        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal"(click)="eliminar()">Eliminar</button>
+      </div>
+    </div>
+  </div>
 </div>

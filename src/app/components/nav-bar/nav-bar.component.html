@@ -7,10 +7,10 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" [routerLink]="['productos']">Home</a>
+            <a class="nav-link active" aria-current="page" [routerLink]="['productos']">Vender</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Nuevo Producto</a>
+            <a class="nav-link text-info" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Nuevo Producto</a>
           </li>
           </ul>
         <form class="d-flex" role="search">
@@ -20,3 +20,43 @@
       </div>
     </div>
   </nav>
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-primary text-white">
+        <h5 class="modal-title" id="staticBackdropLabel">Nuevo Producto</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="nuevoProducto">
+          <div class="mb-3">
+            <label for="nombreProducto" class="form-label">Nombre</label>
+            <input type="text" formControlName="nombre" class="form-control" id="nombreProducto">
+          </div>
+          <div class="mb-3">
+            <label for="categoriaProducto" class="form-label">Categoria</label>
+            <input type="text" formControlName="categoria" class="form-control" id="categoriaProducto">
+          </div>
+          <div class="mb-3">
+            <label for="descripcionProducto" class="form-label">Descripcion</label>
+            <input type="text" formControlName="descripcion" class="form-control" id="descripcionProducto">
+          </div>
+          <div class="mb-3">
+            <label for="cantidadProducto" class="form-label">Cantidad</label>
+            <input type="text" formControlName="cantidadExistente" class="form-control" id="cantidadProducto">
+          </div>
+          <div class="mb-3">
+            <label for="valorProducto" class="form-label">Valor Unitario</label>
+            <input type="text" formControlName="valorUnitario" class="form-control" id="valorProducto">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal"(click)="agregar()">agregar</button>
+      </div>
+    </div>
+  </div>
+</div>

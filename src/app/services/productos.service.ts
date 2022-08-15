@@ -7,10 +7,10 @@ import { Producto } from '../models/productos.model';
 export class ProductosService {
 
   productos:Producto[]=[
-    {id: 1, nombre: 'balon', categoria:'deportes', descripcion: 'balon de futbol', cantidadExistente:8},
-    {id: 2, nombre: 'medias', categoria:'ropa', descripcion: 'medias talla s', cantidadExistente:18},
-    {id: 3, nombre: 'bombones', categoria:'dulces', descripcion: 'bombombum', cantidadExistente:30},
-    {id: 4, nombre: 'pelo sintectico', categoria:'accesorios', descripcion: 'canecalon', cantidadExistente:3}  
+    {nombre: 'balon', categoria:'deportes', descripcion: 'balon de futbol', cantidadExistente:8, valorUnitario: 9000},
+    {nombre: 'medias', categoria:'ropa', descripcion: 'medias talla s', cantidadExistente:18, valorUnitario: 3000},
+    {nombre: 'bombones', categoria:'dulces', descripcion: 'bombombum', cantidadExistente:30, valorUnitario: 500},
+    {nombre: 'pelo sintectico', categoria:'accesorios', descripcion: 'canecalon', cantidadExistente:3, valorUnitario: 12000}  
   ]
 
   constructor() { }
