@@ -1,3 +1,28 @@
-<h1 class="text-center">Vender Productos</h1>
+<div class="container-fluid d-flex">
+    <h1 class="mx-5">Vender Productos</h1>
+    <form *ngIf="buscar" class="d-flex mx-5" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+</div>
+
 <productos></productos>
+
+<div class="modal fade" id="venderModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-info text-white">
+          <h5 class="modal-title" id="staticBackdropLabel">Vender Producto</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body"> 
+          <h3>Realmente desea vender el producto</h3>        
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Vender</button>
+        </div>
+      </div>
+    </div>
+  </div>
 

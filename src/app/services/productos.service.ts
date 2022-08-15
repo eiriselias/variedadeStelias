@@ -14,7 +14,9 @@ export class ProductosService {
   ]
 
   constructor() { }
-
+  optenerUno(i:number){
+    return this.productos[i];
+  }
   
   
 }
