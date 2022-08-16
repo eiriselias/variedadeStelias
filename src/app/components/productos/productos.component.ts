@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Producto } from 'src/app/models/productos.model';
 import { ProductosService } from 'src/app/services/productos.service';
 import { FormControl, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'productos',
@@ -16,7 +15,6 @@ export class ProductosComponent implements OnInit {
   acciones:boolean=false;
   id:number=0;
   vende:boolean=true;
-  vender:boolean=false;
   modificarProducto = new FormGroup({
     nombre: new FormControl(''),    
     descripcion: new FormControl(''),
@@ -25,19 +23,10 @@ export class ProductosComponent implements OnInit {
     valorUnitario: new FormControl(0),
   })
 
-  constructor(private productoServi:ProductosService, private router:Router) { }
+  constructor(private productoServi:ProductosService) { }
 
   ngOnInit(): void {
-    console.log(this.router.url)
-    if(this.router.url=="/vender"){
-      this.vende = false;
-      this.vender = true;
-    }
-    if(this.router.url=="/productos"){ 
-      this.vende = true;
-      this.vender = false;
-    }
-    this.productos = this.productoServi.productos
+       this.productos = this.productoServi.productos
   }
 
   verAcciones(){

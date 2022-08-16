@@ -19,15 +19,9 @@
                 <th>{{producto.descripcion}}</th>
                 <th>{{producto.cantidadExistente}}</th>
                 <th>$ {{producto.valorUnitario}}</th>
-                <th *ngIf="acciones" class="text-center">
-                    <div *ngIf="vende">
+                <th *ngIf="acciones" class="text-center">                   
                       <button (click)="selecion(i)" class="btn btn-success mx-1" data-bs-toggle="modal" data-bs-target="#modificarModal">Modificar</button>
-                      <button (click)="selecion(i)" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#eliminarModal">Eliminar</button>
-                    </div>
-                    <div *ngIf="vender">
-                      <a [routerLink]="['../aVender',i]" ><span  class="btn btn-info text-white">Vender</span></a>
-                    </div>
-                    
+                      <button (click)="selecion(i)" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#eliminarModal">Eliminar</button>    
                 </th>
             </tr>
         </tbody>
@@ -91,21 +85,4 @@
     </div>
   </div>
 </div>
-  <!-- Modal -->
-  <div class="modal fade" id="venderModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header bg-info text-white">
-          <h5 class="modal-title" id="staticBackdropLabel">vender Producto</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body"> 
-               ...
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-          <button type="button" class="btn btn-info text-white" data-bs-dismiss="modal">vender</button>
-        </div>
-      </div>
-    </div>
-  </div>
+  

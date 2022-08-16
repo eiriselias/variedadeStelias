@@ -7,8 +7,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VenderComponent implements OnInit {
 
-  buscar:boolean=false;
-
   constructor() { }
 
   ngOnInit(): void {
