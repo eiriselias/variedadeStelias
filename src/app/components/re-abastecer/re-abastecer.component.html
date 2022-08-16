@@ -1,1 +1,16 @@
-<p>re-abastecer works!</p>
+<div class="container text-center my-3">
+    <h2>Re-Abastecer Productos</h2>
+    <div class="mb-3 d-flex caja">
+        <label for="codigo" class="form-label mx-2">Codigo</label>
+        <input type="text" [(ngModel)]="codigo" class="form-control mx-2" id="codigo">
+        <label for="nombreProducto" class="form-label mx-2">Producto</label>
+        <input type="text" [(ngModel)]="producto" class="form-control mx-2" id="nombreProducto">
+        <label for="cantidad" class="form-label mx-2">Cantidad</label>
+        <input type="number" [(ngModel)]="cantidad"  class="form-control mx-2" id="cantidad">
+        <button (click)="buscar()" class="btn btn-secondary mx-2">Buscar</button>
+        <button (click)="abastecer()" class="btn btn-success">Abastecer</button>
+    </div>
+</div>
+<div *ngIf="novedad" class="text-center text-success">
+    <h3>se agregaron {{nuevos}} {{productos[codigo].nombre}}</h3>
+</div>
