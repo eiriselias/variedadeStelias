@@ -1,4 +1,34 @@
 <div class="container text-center my-3">
+    <h3>buscar Producto</h3>
+    <div class="mb-3 caja">
+        <div class="d-flex">            
+            <label for="nombreProducto" class="form-label mx-2">Producto</label>
+            <input type="text" [(ngModel)]="nombreProducto" class="form-control mx-2" name="nombreProducto">
+        </div>      
+   
+<table class="table table-striped table-hover my-3">
+    <thead>
+        <tr class="table-dark">
+            <th>Codigo</th>
+            <th>Producto</th>            
+            <th>ValorUnitario</th>
+            <th>Cantidad</th>
+            <th>Subtotal</th>
+            <th>carro</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let produ of productos| filter: nombreProducto; index as i">
+            <th>{{i}}</th>
+            <th>{{produ.nombre}}</th>            
+            <th>{{produ.valorUnitario}}</th>
+            <th><input type="number" [(ngModel)]="cantidad" class="form-control"></th>
+            <th>{{cantidad * produ.valorUnitario}}</th>
+            <th><button (click)="agregar(i)" class="btn btn-info text-white">Agregar</button></th>
+        </tr>
+    </tbody>
+</table>
+</div>
     <h3>Datos del cliente</h3>
     <div class="mb-3 d-flex caja">
         <label for="docuUsuario" class="form-label mx-2">Documento</label>
@@ -8,27 +38,7 @@
         <label for="celUsuario" class="form-label mx-2">Telefono</label>
         <input type="text" [(ngModel)]="celUsuario" class="form-control mx-2" id="celUsuario">
     </div>
-    <h3>Producto</h3>
-    <div class="mb-3 caja">
-        <div class="d-flex">
-            <label for="codigo" class="form-label mx-2">Codigo</label>
-            <input type="text" [(ngModel)]="codigo" class="form-control mx-2" id="codigo" disabled>
-            <label for="nombreProducto" class="form-label mx-2">Nombre</label>
-            <input type="text" [(ngModel)]="nombreProducto" class="form-control mx-2" id="nombreProducto">
-            <button (click)="buscar()" class="btn btn-secondary mx-2">Buscar</button>
-            <button (click)="agregar()" class="btn btn-success">Agregar</button>
-        </div>
-        <div class="d-flex my-3">
-            <label for="cantidad" class="form-label mx-2">Cantidad</label>
-            <input type="number" [(ngModel)]="cantidad" class="form-control mx-2" id="cantidad">
-            <label for="precio" class="form-label mx-2">PrecioUnitario</label>
-            <input type="number" [(ngModel)]="precio" class="form-control mx-2" id="precio" disabled>
-            <label for="vaTotal"class="form-label mx-2">subTotal</label>
-            <input type="number" [(ngModel)]="vaTotal" class="form-control mx-2" id="vaTotal" disabled>           
-        </div>        
-    </div>
-</div>
-
+    <h3>Carrito</h3>
 <table class="table table-striped">
     <thead>
         <tr class="table-dark">
@@ -37,22 +47,30 @@
             <th>Cantidad</th>
             <th>ValorUnitario</th>
             <th>Subtotal</th>
+            <th>Descartar</th>
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let item of carro">
+        <tr *ngFor="let item of carro; index as i">
             <th>{{item.codigo}}</th>
             <th>{{item.nombreProducto}}</th>
             <th>{{item.cantidad}}</th>
             <th>{{item.precio}}</th>
             <th>{{item.vaTotal}}</th>
+            <th><button (click)="descartar(i)" class="btn btn-danger">Descartar</button></th>
         </tr>
     </tbody>
 </table>
 <div align="right" class="my-3">
    <h4>Total General <span class="text-success my-3">{{totalGeneral}}</span></h4> 
-   <button (click)="vendido()" class="btn btn-success my-3">Vendido</button>
+   <button (click)="vendido()"  class="btn btn-success my-3">Vendido</button>
 </div>
+
+</div>
+
+
+
+
 
 
 

@@ -17,6 +17,12 @@ export class ProductosService {
   optenerUno(i:number){
     return this.productos[i];
   }
+
+  reVendido(carro:any){
+    for(let i in carro){
+      this.productos[carro[i].codigo].cantidadExistente = this.productos[carro[i].codigo].cantidadExistente - carro[i].cantidad;
+    }
+  }
   
   
 }

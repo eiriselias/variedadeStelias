@@ -8,6 +8,7 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { ProductosComponent } from './components/productos/productos.component';
 import { VenderComponent } from './components/vender/vender.component';
 import { ReAbastecerComponent } from './components/re-abastecer/re-abastecer.component';
+import { FilterPipe } from './pipes/filter.pipe';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { ReAbastecerComponent } from './components/re-abastecer/re-abastecer.com
     NavBarComponent,
     ProductosComponent,
     VenderComponent,
-    ReAbastecerComponent
+    ReAbastecerComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,

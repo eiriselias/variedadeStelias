@@ -15,7 +15,7 @@ export class VenderComponent implements OnInit {
 
   codigo:number=0;
   nombreProducto:string="";
-  cantidad:number=0;
+  cantidad:number=1;
   precio:number=0;
   vaTotal:number=0;
 
@@ -30,29 +30,31 @@ export class VenderComponent implements OnInit {
   ngOnInit(): void {
     this.productos = this.produServi.productos
   }
-
-  buscar(){
-    for(let i=0; this.productos.length; i++){
-      if(this.nombreProducto == this.productos[i].nombre){
-        this.codigo = i;
-        this.precio = this.productos[i].valorUnitario;
-        this.vaTotal = this.cantidad * this.productos[i].valorUnitario;
-      }
-    }
-  }
-  agregar(){
+  agregar(i:number){
+    if(this.cantidad > this.productos[i].cantidadExistente) return alert(`del producto ${this.productos[i].nombre} solo quedan ${this.productos[i].cantidadExistente} unidades`);
+    if(this.productos[i].cantidadExistente ==0 ) return alert(`no queda ${this.productos[i].nombre} reabastecer este producto`);
     this.itemsCarro = {
-      codigo: this.codigo,
-      nombreProducto: this.nombreProducto,
+      codigo: i,
+      nombreProducto: this.productos[i].nombre,
       cantidad: this.cantidad,
-      precio: this.precio,
-      vaTotal: this.vaTotal
+      precio: this.productos[i].valorUnitario,
+      vaTotal: this.cantidad * this.productos[i].valorUnitario
     }
     this.totalGeneral = this.totalGeneral + this.itemsCarro.vaTotal
     this.carro.push(this.itemsCarro);
+    this.cantidad=1;
+    alert("se agregara el producto al carro");
   }
-  vendido(){
-    alert("Productos Vendidos")
+  vendido(){   
+    this.produServi.reVendido(this.carro);
+    this.carro = [];
+    this.totalGeneral=0;
+    return alert("Productos Vendidos")
+  }
+
+  descartar(i:number): void{
+    this.totalGeneral = this.totalGeneral - this.carro[i].vaTotal
+    this.carro = this.carro.filter((item:any) => item != this.carro[i])     
   }
 
 }
