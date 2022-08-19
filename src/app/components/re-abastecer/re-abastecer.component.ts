@@ -29,6 +29,7 @@ export class ReAbastecerComponent implements OnInit {
       this.productos = Object.values(reg);
       this.productoServi.setProductos(this.productos);
       this.productos = this.productoServi.productos;
+      this.productos.sort((a,b)=> a.nombre.localeCompare(b.nombre));
      })
      
   }

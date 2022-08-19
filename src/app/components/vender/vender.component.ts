@@ -42,6 +42,7 @@ export class VenderComponent implements OnInit {
       this.productos = Object.values(reg);
       this.productoServi.setProductos(this.productos);
       this.productos = this.productoServi.productos;
+      this.productos.sort((a,b)=> a.nombre.localeCompare(b.nombre));
      })
      this.productoServi.optenerVentas().subscribe((reg:any)=>{
       this.vendidos = Object.values(reg);
