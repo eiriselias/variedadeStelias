@@ -8,14 +8,21 @@ import { DataService } from './data.service';
 export class ProductosService {
 
   productos:Producto[]=[]
-  vendidos:any;
+  vendidos:any=[];
 
-  constructor( private dataFire: DataService) { }
+  constructor( private data: DataService) { }
   optenerProductos(){
-    return this.dataFire.cargarProductos();
-  }
+    return this.data.cargarProductos();
+  }  
   setProductos(misProductos:any){
     this.productos = misProductos;
+  }
+
+  optenerVentas(){
+    return this.data.cargarVentas();
+  }
+  setVentas(misVentas:any){
+    this.vendidos = misVentas;
   }
 
   optenerUno(i:number){

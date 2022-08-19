@@ -11,6 +11,7 @@ import { ProductosService } from 'src/app/services/productos.service';
 })
 export class VenderComponent implements OnInit {
 
+  
   docuUsuario:number=0;
   nombreUsuario:string="";
   celUsuario:number=0;
@@ -24,11 +25,12 @@ export class VenderComponent implements OnInit {
   carro:any=[];
   itemsCarro:any={};
   totalGeneral:number=0;
+  numFact:number=0;
 
   productos:Producto[]=[]
   producto:any;
   vender:any={}
-  vendidos:any;
+  vendidos:any=[];
 
   constructor(private productoServi:ProductosService, private data:DataService) { }
 
@@ -38,7 +40,11 @@ export class VenderComponent implements OnInit {
       this.productoServi.setProductos(this.productos);
       this.productos = this.productoServi.productos;
      })
-     this.vendidos = this.productoServi.vendidos;
+     this.productoServi.optenerVentas().subscribe((reg:any)=>{
+      this.vendidos = Object.values(reg);
+      this.productoServi.setVentas(this.vendidos);
+      this.vendidos = this.productoServi.vendidos;
+     }) 
   }
   agregar(i:number){
     
@@ -55,7 +61,7 @@ export class VenderComponent implements OnInit {
       nombreProducto: this.producto.nombre,
       cantidad: this.cantidad,
       precio: this.producto.valorUnitario,
-      vaTotal: this.cantidad * this.producto.valorUnitario
+      vaTotal: this.cantidad * this.producto.valorUnitario,      
     }
     this.totalGeneral = this.totalGeneral + this.itemsCarro.vaTotal
     this.carro.push(this.itemsCarro);
@@ -64,19 +70,24 @@ export class VenderComponent implements OnInit {
   }
   vendido(){   
     this.productoServi.reVendido(this.carro);
+        this.vendidos==undefined ? this.numFact = 1: this.numFact = this.vendidos.length + 1
     this.vender ={
-      fact: this.vendidos.length + 1,
+      fact: this.numFact,
       docuUsuario: this.docuUsuario,
       nombreUsuario: this.nombreUsuario,
       celUsuario:this.celUsuario,
       carro: this.carro,
       totalGeneral: this.totalGeneral
     }
-    this.vendidos.push(this.vender)
+    this.vendidos.push(this.vender);
     this.carro = [];
+    this.docuUsuario=0;
+    this.nombreUsuario="";
+    this.celUsuario=0;
     this.totalGeneral=0;
-    this.data.guardarProductos(this.productos)
-    return alert("Productos Vendidos")    
+    this.data.guardarProductos(this.productos);
+    this.data.guardarVentas(this.vendidos);
+    return alert("Productos Vendidos");    
   }
 
   descartar(i:number): void{

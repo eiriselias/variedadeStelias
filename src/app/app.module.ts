@@ -12,7 +12,8 @@ import { FilterPipe } from './pipes/filter.pipe';
 import { HomeComponent } from './components/home/home.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { DataService } from './services/data.service';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http';
+import { HistorialComponent } from './components/historial/historial.component'
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { HttpClientModule } from '@angular/common/http'
     ReAbastecerComponent,
     FilterPipe,
     HomeComponent,
-    FooterComponent
+    FooterComponent,
+    HistorialComponent
   ],
   imports: [
     BrowserModule,

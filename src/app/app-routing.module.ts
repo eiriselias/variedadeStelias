@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { HistorialComponent } from './components/historial/historial.component';
 import { HomeComponent } from './components/home/home.component';
 import { ProductosComponent } from './components/productos/productos.component';
 import { ReAbastecerComponent } from './components/re-abastecer/re-abastecer.component';
@@ -12,6 +13,7 @@ const routes: Routes = [
     {path:"productos",component:ProductosComponent},
     {path:"vender", component:VenderComponent},
     {path:"re-abastecer", component:ReAbastecerComponent},
+    {path:"historial", component:HistorialComponent},
     {path:"**", redirectTo:'/', pathMatch:'full'}
 ];
 

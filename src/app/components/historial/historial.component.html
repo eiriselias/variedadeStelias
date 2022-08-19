@@ -1,0 +1,87 @@
+<div class="container">
+    <h2 class="text-center">Historial de Ventas</h2>
+    <div class="row">
+        <div class="col">
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr class="table-success">
+                        <th>Fact</th>
+                        <th>Cliente</th>
+                        <th>Total Venta</th>
+                        <th>Mostrar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let fact of vendidos">
+                        <th>{{fact.fact}}</th>
+                        <th>{{fact.nombreUsuario}}</th>
+                        <th>{{fact.totalGeneral}}</th>
+                        <th><button (click)="detalle(fact.fact)" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#historialModal">Detalles</button></th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal" id="historialModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header bg-primary text-white">
+          <h5 class="modal-title" id="staticBackdropLabel">Historial factutura Nº {{factura.fact}}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="container">
+            <div class="row">
+                <div class="col text-center">
+                    <h2>Variedades Stelias</h2>
+                    <h5>Nit: 1111776697-7</h5>
+                    <p>cel: 310 707 5245</p>
+                </div>
+            </div>
+            <div  class="row">
+                <div class="col"><h5>Cliente:</h5></div>
+                <div align="right" class="col"><h5>Fact Nº: <span class="text-danger">{{factura.fact}}</span></h5></div>
+
+            </div>            
+            <div class="row d-flex caja">                
+                <div class="col"><p>Documento:{{factura.docuUsuario}}</p></div>
+                <div class="col"><p>Cliente: {{factura.nombreUsuario}}</p></div>
+                <div class="col"><p>Telefono: {{factura.celUsuario}}</p></div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <table class="table my-3">
+                        <thead>
+                            <tr class="table-secondary">
+                                <th>Codigo</th>
+                                <th>Producto</th>
+                                <th>Cantidad</th>
+                                <th>ValorUnitario</th>
+                                <th>SubTotal</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let prod of factura.carro">
+                                <th>{{prod.codigo}}</th>
+                                <th>{{prod.nombreProducto}}</th>
+                                <th>{{prod.cantidad}}</th>
+                                <th>{{prod.precio}}</th>
+                                <th>{{prod.vaTotal}}</th>
+                            </tr>
+                        </tbody>
+                    </table>                    
+                </div>
+            </div>
+            <div align="right" class="row">
+                <div class="col"><h5>Total General <span class="text-success">{{factura.totalGeneral}}</span></h5></div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>

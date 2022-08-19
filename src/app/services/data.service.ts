@@ -19,4 +19,17 @@ export class DataService {
       error => console.log("Error: "+ error)
     )
   }
+
+  cargarVentas(){
+    return this.httpClient.get('https://variedadestelias-default-rtdb.firebaseio.com/ventas.json');
+  }
+
+  guardarVentas(ventas:any){
+
+    this.httpClient.put('https://variedadestelias-default-rtdb.firebaseio.com/ventas.json', ventas).subscribe(
+      response => console.log("se han guardado los ususarios"+response),
+      error => console.log("Error: "+ error)
+    )
+  }
+
 }
