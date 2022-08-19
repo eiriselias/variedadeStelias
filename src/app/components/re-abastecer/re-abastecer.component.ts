@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Producto } from 'src/app/models/productos.model';
+import { DataService } from 'src/app/services/data.service';
 import { ProductosService } from 'src/app/services/productos.service';
 
 @Component({
@@ -9,35 +10,44 @@ import { ProductosService } from 'src/app/services/productos.service';
 })
 export class ReAbastecerComponent implements OnInit {
 
-  codigo:number=0;
   producto:string="";
   cantidad:number=0;
-  nuevos:number=0;
-  novedad:boolean=false;
-  abastece: any;
   productos:Producto[] = [];
   
 
-  constructor(private produServi:ProductosService) { }
+  constructor(private productoServi:ProductosService, private data:DataService) { }
 
   ngOnInit(): void {
-    this.productos = this.produServi.productos;
+    this.productoServi.optenerProductos().subscribe((reg:any)=>{
+      this.productos = Object.values(reg);
+      this.productoServi.setProductos(this.productos);
+      this.productos = this.productoServi.productos;
+     })
   }
-  buscar(){
-    this.producto = this.productos[this.codigo].nombre;
-    this.cantidad = this.productos[this.codigo].cantidadExistente;
-  }
-  abastecer(){
-    if(this.productos[this.codigo].cantidadExistente < this.cantidad){
-      this.nuevos = this.cantidad - this.productos[this.codigo].cantidadExistente
-      this.productos[this.codigo].cantidadExistente = this.cantidad;
-      this.producto = "";
-      this.cantidad = 0;      
-      this.novedad=true;
+  abastecer(j:number){
+    if(this.cantidad==0) return alert("debe agregar la cantidad a abastecer");
+    if(this.cantidad<0){
+      if( confirm("realmente desea disminuir productos?")){
+        for(let i in this.productos){
+          if(this.productos[i].id==j){
+            this.productos[i].cantidadExistente = this.productos[i].cantidadExistente + this.cantidad;
+            alert(`se quitaron ${this.cantidad *= -1} ${this.productos[i].nombre}`)
+            this.cantidad = 0;
+            this.data.guardarProductos(this.productos)
+          }
+        }
+      };
     }else{
-      alert("el abastecimiento debe contener un valor mayor al anterior");
-      this.novedad=false;
+      for(let i in this.productos){
+        if(this.productos[i].id==j){
+          this.productos[i].cantidadExistente = this.productos[i].cantidadExistente + this.cantidad;
+          alert(`hay ${this.cantidad} nuevos ${this.productos[i].nombre}`)
+          this.cantidad = 0;
+          this.data.guardarProductos(this.productos)
+        }
+      }
     }
+    this.producto="";
   }
 
 

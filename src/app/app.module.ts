@@ -9,6 +9,10 @@ import { ProductosComponent } from './components/productos/productos.component';
 import { VenderComponent } from './components/vender/vender.component';
 import { ReAbastecerComponent } from './components/re-abastecer/re-abastecer.component';
 import { FilterPipe } from './pipes/filter.pipe';
+import { HomeComponent } from './components/home/home.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { DataService } from './services/data.service';
+import { HttpClientModule } from '@angular/common/http'
 
 @NgModule({
   declarations: [
@@ -17,15 +21,18 @@ import { FilterPipe } from './pipes/filter.pipe';
     ProductosComponent,
     VenderComponent,
     ReAbastecerComponent,
-    FilterPipe
+    FilterPipe,
+    HomeComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

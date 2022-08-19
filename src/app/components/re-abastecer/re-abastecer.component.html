@@ -1,16 +1,29 @@
 <div class="container text-center my-3">
     <h2>Re-Abastecer Productos</h2>
-    <div class="mb-3 d-flex caja">
-        <label for="codigo" class="form-label mx-2">Codigo</label>
-        <input type="text" [(ngModel)]="codigo" class="form-control mx-2" id="codigo">
+    <div class="mb-3 d-flex caja">        
         <label for="nombreProducto" class="form-label mx-2">Producto</label>
-        <input type="text" [(ngModel)]="producto" class="form-control mx-2" id="nombreProducto">
-        <label for="cantidad" class="form-label mx-2">Cantidad</label>
-        <input type="number" [(ngModel)]="cantidad"  class="form-control mx-2" id="cantidad">
-        <button (click)="buscar()" class="btn btn-secondary mx-2">Buscar</button>
-        <button (click)="abastecer()" class="btn btn-success">Abastecer</button>
+        <input type="text" [(ngModel)]="producto" class="form-control mx-2" id="nombreProducto">          
     </div>
 </div>
-<div *ngIf="novedad" class="text-center text-success">
-    <h3>se agregaron {{nuevos}} {{productos[codigo].nombre}}</h3>
+<div>
+    <p class="text-center"><span class="text-danger">NOTA:</span> Recuerda que debes agregar la cantidad nueva de productos a agregar</p>
 </div>
+<table class="table table-striped table-hover my-3">
+    <thead>
+        <tr class="table-dark">
+            <th>Producto</th> 
+            <th>CantidadActual</th>
+            <th>CantidadAbastecer</th>
+            <th>Accion</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let produ of productos | filter: producto; index as i">
+            
+            <th>{{produ.nombre}}</th>            
+            <th>{{produ.cantidadExistente}}</th>
+            <th><input type="number" [(ngModel)]="cantidad"  class="form-control mx-2" id="cantidad"></th>
+            <th><button (click)="abastecer(produ.id)" class="btn btn-success">Abastecer</button></th>
+        </tr>
+    </tbody>
+</table>

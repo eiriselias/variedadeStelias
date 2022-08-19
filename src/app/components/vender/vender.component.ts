@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Producto } from 'src/app/models/productos.model';
+import { DataService } from 'src/app/services/data.service';
 import { ProductosService } from 'src/app/services/productos.service';
 
 @Component({
@@ -25,10 +26,14 @@ export class VenderComponent implements OnInit {
 
   productos:Producto[]=[]
 
-  constructor(private produServi:ProductosService) { }
+  constructor(private productoServi:ProductosService, private data:DataService) { }
 
   ngOnInit(): void {
-    this.productos = this.produServi.productos
+    this.productoServi.optenerProductos().subscribe((reg:any)=>{
+      this.productos = Object.values(reg);
+      this.productoServi.setProductos(this.productos);
+      this.productos = this.productoServi.productos;
+     })
   }
   agregar(i:number){
     if(this.cantidad > this.productos[i].cantidadExistente) return alert(`del producto ${this.productos[i].nombre} solo quedan ${this.productos[i].cantidadExistente} unidades`);
@@ -44,12 +49,14 @@ export class VenderComponent implements OnInit {
     this.carro.push(this.itemsCarro);
     this.cantidad=1;
     alert("se agregara el producto al carro");
+    this.data.guardarProductos(this.productos)
   }
   vendido(){   
-    this.produServi.reVendido(this.carro);
+    this.productoServi.reVendido(this.carro);
     this.carro = [];
     this.totalGeneral=0;
-    return alert("Productos Vendidos")
+    this.data.guardarProductos(this.productos)
+    return alert("Productos Vendidos")    
   }
 
   descartar(i:number): void{

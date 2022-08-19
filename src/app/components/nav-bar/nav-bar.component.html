@@ -9,21 +9,29 @@
 </div>
 <nav class="navbar navbar-expand-lg bg-light">
     <div class="container-fluid">
-      <a class="navbar-brand" [routerLink]="['productos']">Variedade<span class="text-danger">Stelias</span></a>
+      <a class="navbar-brand" [routerLink]="['/']">Variedade<span class="text-danger">Stelias</span></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Productos
+            </a>
+            <ul class="dropdown-menu">
+              <li class="nav-item">
+                <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Nuevo Producto</a>
+              </li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" [routerLink]="['productos']">Ver Productos</a></li>
+              <li><a class="dropdown-item" [routerLink]="['re-abastecer']">Re-Abastecer</a></li>
+            </ul>
+          </li>
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" [routerLink]="['vender']">Vender</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" [routerLink]="['re-abastecer']">Re-Abastecer</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-info" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Nuevo Producto</a>
-          </li>
+          
         </ul>
       </div>
     </div>
@@ -53,11 +61,11 @@
           </div>
           <div class="mb-3">
             <label for="cantidadProducto" class="form-label">Cantidad</label>
-            <input type="text" formControlName="cantidadExistente" class="form-control" id="cantidadProducto">
+            <input type="number" formControlName="cantidadExistente" class="form-control" id="cantidadProducto">
           </div>
           <div class="mb-3">
             <label for="valorProducto" class="form-label">Valor Unitario</label>
-            <input type="text" formControlName="valorUnitario" class="form-control" id="valorProducto">
+            <input type="number" formControlName="valorUnitario" class="form-control" id="valorProducto">
           </div>
         </form>
       </div>

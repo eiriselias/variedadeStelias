@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Producto } from 'src/app/models/productos.model';
 import { ProductosService } from 'src/app/services/productos.service';
 import { FormControl, FormGroup } from '@angular/forms';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'productos',
@@ -23,10 +24,15 @@ export class ProductosComponent implements OnInit {
     valorUnitario: new FormControl(0),
   })
 
-  constructor(private productoServi:ProductosService) { }
+  constructor(private productoServi:ProductosService, private data: DataService) { }
 
   ngOnInit(): void {
-       this.productos = this.productoServi.productos
+       //this.productos = this.productoServi.productos 
+       this.productoServi.optenerProductos().subscribe((reg:any)=>{
+        this.productos = Object.values(reg);
+        this.productoServi.setProductos(this.productos);
+        this.productos = this.productoServi.productos;
+       })     
   }
 
   verAcciones(){
@@ -47,8 +53,10 @@ export class ProductosComponent implements OnInit {
   modificar(){
     this.producto = this.modificarProducto.value
     this.productos[this.id] = this.producto
+    this.data.guardarProductos(this.productos);
   }
   eliminar(){
     this.productos = this.productos.filter(pro => pro != this.productos[this.id])
+    this.data.guardarProductos(this.productos)
   } 
 }
