@@ -5,9 +5,12 @@
         <input type="text" [(ngModel)]="producto" class="form-control mx-2" id="nombreProducto">          
     </div>
 </div>
-<div>
-    <p class="text-center"><span class="text-danger">NOTA:</span> Recuerda que debes agregar la cantidad nueva de productos a agregar</p>
+<div class=" text center d-flex">
+    <p class="mx-5 px-3"><span class="text-danger">NOTA:</span> Recuerda que debes agregar la cantidad nueva de productos a agregar</p>
+    <div *ngIf="normal"><button (click)="mostrarAgotados()" class="btn btn-danger">Productos Agotados</button></div>
+    <div *ngIf="agotado"><button (click)="mostrarTodos()" class="btn btn-success">Mostrar Todos</button></div>    
 </div>
+<h3 *ngIf="agotado" class="text-center text-danger">Hay menos de 5 productos Reabastecer</h3>
 <table class="table table-striped table-hover my-3">
     <thead>
         <tr class="table-dark">
@@ -17,13 +20,22 @@
             <th>Accion</th>
         </tr>
     </thead>
-    <tbody>
+    <tbody *ngIf="normal">
         <tr *ngFor="let produ of productos | filter: producto; index as i">
             
             <th>{{produ.nombre}}</th>            
             <th>{{produ.cantidadExistente}}</th>
             <th><input type="number" [(ngModel)]="cantidad"  class="form-control mx-2" id="cantidad"></th>
-            <th><button (click)="abastecer(produ.id)" class="btn btn-success">Abastecer</button></th>
+            <th><button (click)="abastecer(produ.id)" class="btn btn-{{color(produ.cantidadExistente)}}">Abastecer</button></th>
+        </tr>
+    </tbody>
+    <tbody *ngIf="agotado">
+        <tr *ngFor="let produ of agotados | filter: producto; index as i">
+            
+            <th>{{produ.nombre}}</th>            
+            <th>{{produ.cantidadExistente}}</th>
+            <th><input type="number" [(ngModel)]="cantidad"  class="form-control mx-2" id="cantidad"></th>
+            <th><button (click)="abastecer(produ.id)" class="btn btn-danger">Abastecer</button></th>
         </tr>
     </tbody>
 </table>

@@ -13,6 +13,12 @@ export class ReAbastecerComponent implements OnInit {
   producto:string="";
   cantidad:number=0;
   productos:Producto[] = [];
+  agotados:any=[];
+  normal:boolean=true;
+  agotado:boolean=!this.normal;
+  esta:boolean=false;
+  btnAgotado:string="";
+  
   
 
   constructor(private productoServi:ProductosService, private data:DataService) { }
@@ -23,6 +29,7 @@ export class ReAbastecerComponent implements OnInit {
       this.productoServi.setProductos(this.productos);
       this.productos = this.productoServi.productos;
      })
+     
   }
   abastecer(j:number){
     if(this.cantidad==0) return alert("debe agregar la cantidad a abastecer");
@@ -48,6 +55,38 @@ export class ReAbastecerComponent implements OnInit {
       }
     }
     this.producto="";
+  }
+  color(cantidad:number){
+       cantidad <= 5 ? this.btnAgotado="danger" : this.btnAgotado="success"
+       return this.btnAgotado;
+  }
+  mostrarAgotados(){ 
+    
+    for(let i in this.productos){
+      if(this.productos[i].cantidadExistente <= 5){
+        if(this.agotados.length == 0)this.agotados.push(this.productos[i]);     
+        this.esta = false; 
+        for(let j in this.agotados){ 
+          if( this.productos[i].id == this.agotados[j].id )
+          this.esta = true;          
+        }  
+        if (!this.esta)this.agotados.push(this.productos[i]); 
+      }
+    }
+  
+    this.normal=false;    
+    this.agotado=true;
+    //console.log(this.agotados)
+    //this.btnNormal=false;
+    //this.btnAgotado=true;
+  }
+  mostrarTodos(){
+    this.normal=true;
+    this.agotado=false;
+    
+
+    //this.btnNormal=true;
+    //this.btnAgotado=false;
   }
 
 

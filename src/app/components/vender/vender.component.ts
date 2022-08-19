@@ -27,6 +27,8 @@ export class VenderComponent implements OnInit {
 
   productos:Producto[]=[]
   producto:any;
+  vender:any={}
+  vendidos:any;
 
   constructor(private productoServi:ProductosService, private data:DataService) { }
 
@@ -36,6 +38,7 @@ export class VenderComponent implements OnInit {
       this.productoServi.setProductos(this.productos);
       this.productos = this.productoServi.productos;
      })
+     this.vendidos = this.productoServi.vendidos;
   }
   agregar(i:number){
     
@@ -61,6 +64,15 @@ export class VenderComponent implements OnInit {
   }
   vendido(){   
     this.productoServi.reVendido(this.carro);
+    this.vender ={
+      fact: this.vendidos.length + 1,
+      docuUsuario: this.docuUsuario,
+      nombreUsuario: this.nombreUsuario,
+      celUsuario:this.celUsuario,
+      carro: this.carro,
+      totalGeneral: this.totalGeneral
+    }
+    this.vendidos.push(this.vender)
     this.carro = [];
     this.totalGeneral=0;
     this.data.guardarProductos(this.productos)

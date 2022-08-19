@@ -8,6 +8,7 @@ import { DataService } from './data.service';
 export class ProductosService {
 
   productos:Producto[]=[]
+  vendidos:any;
 
   constructor( private dataFire: DataService) { }
   optenerProductos(){

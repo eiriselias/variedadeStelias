@@ -42,8 +42,7 @@ export class NavBarComponent implements OnInit {
       valorUnitario: this.nuevoProducto.value.valorUnitario
     }
    this.productos.push(this.producto)   
-   this.data.guardarProductos(this.productos)
-   
+   this.data.guardarProductos(this.productos)   
   }
 
 }
