@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PageEvent } from '@angular/material/paginator';
 import { Producto } from 'src/app/models/productos.model';
 import { DataService } from 'src/app/services/data.service';
 import { ProductosService } from 'src/app/services/productos.service';
@@ -9,6 +10,8 @@ import { ProductosService } from 'src/app/services/productos.service';
   styleUrls: ['./re-abastecer.component.css']
 })
 export class ReAbastecerComponent implements OnInit {
+  page:number=0;
+  pageSize:number=10;
 
   producto:string="";
   cantidad:number=0;
@@ -17,9 +20,7 @@ export class ReAbastecerComponent implements OnInit {
   normal:boolean=true;
   agotado:boolean=!this.normal;
   esta:boolean=false;
-  btnAgotado:string="";
-  
-  
+  btnAgotado:string="";  
 
   constructor(private productoServi:ProductosService, private data:DataService) { }
 
@@ -76,17 +77,13 @@ export class ReAbastecerComponent implements OnInit {
   
     this.normal=false;    
     this.agotado=true;
-    //console.log(this.agotados)
-    //this.btnNormal=false;
-    //this.btnAgotado=true;
   }
   mostrarTodos(){
     this.normal=true;
     this.agotado=false;
-    
-
-    //this.btnNormal=true;
-    //this.btnAgotado=false;
+  }
+  cambiarPagina(e:PageEvent){
+    this.page = e.pageIndex * e.pageSize;
   }
 
 

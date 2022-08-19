@@ -1,5 +1,6 @@
 import { ThisReceiver } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
+import { PageEvent } from '@angular/material/paginator';
 import { Producto } from 'src/app/models/productos.model';
 import { DataService } from 'src/app/services/data.service';
 import { ProductosService } from 'src/app/services/productos.service';
@@ -11,6 +12,8 @@ import { ProductosService } from 'src/app/services/productos.service';
 })
 export class VenderComponent implements OnInit {
 
+  page:number=0;
+  pageSize:number=5;
   
   docuUsuario:number=0;
   nombreUsuario:string="";
@@ -93,6 +96,9 @@ export class VenderComponent implements OnInit {
   descartar(i:number): void{
     this.totalGeneral = this.totalGeneral - this.carro[i].vaTotal
     this.carro = this.carro.filter((item:any) => item != this.carro[i])     
+  }
+  cambiarPagina(e:PageEvent){
+    this.page = e.pageIndex * e.pageSize;
   }
 
 }

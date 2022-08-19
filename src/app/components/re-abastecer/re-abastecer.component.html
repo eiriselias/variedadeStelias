@@ -21,7 +21,7 @@
         </tr>
     </thead>
     <tbody *ngIf="normal">
-        <tr *ngFor="let produ of productos | filter: producto; index as i">
+        <tr *ngFor="let produ of productos | filter: page : producto: pageSize; index as i">
             
             <th>{{produ.nombre}}</th>            
             <th>{{produ.cantidadExistente}}</th>
@@ -30,7 +30,7 @@
         </tr>
     </tbody>
     <tbody *ngIf="agotado">
-        <tr *ngFor="let produ of agotados | filter: producto; index as i">
+        <tr *ngFor="let produ of agotados | filter : page : producto : pageSize; index as i">
             
             <th>{{produ.nombre}}</th>            
             <th>{{produ.cantidadExistente}}</th>
@@ -39,3 +39,8 @@
         </tr>
     </tbody>
 </table>
+<mat-paginator [length]="productos.length"
+              [pageSize]="pageSize"
+              (page)="cambiarPagina($event)"
+              aria-label="Select page">
+</mat-paginator>

@@ -12,7 +12,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let producto of productos; index as i" (click)="verAcciones()">
+            <tr *ngFor="let producto of productos | filter:page:null:pageSize ; index as i" (click)="verAcciones()">
                 <th scope="row">{{i+1}}</th>
                 <th>{{producto.nombre}}</th>
                 <th>{{producto.categoria}}</th>
@@ -26,6 +26,11 @@
             </tr>
         </tbody>
     </table>
+    <mat-paginator [length]="productos.length"
+              [pageSize]="pageSize"
+              (page)="cambiarPagina($event)"
+              aria-label="Select page">
+</mat-paginator>
 </div>
 
 <!-- Modal -->

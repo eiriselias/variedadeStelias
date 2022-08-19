@@ -12,7 +12,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let fact of vendidos">
+                    <tr *ngFor="let fact of vendidos | filter:page:null:pageSize;">
                         <th>{{fact.fact}}</th>
                         <th>{{fact.nombreUsuario}}</th>
                         <th>{{fact.totalGeneral}}</th>
@@ -20,6 +20,11 @@
                     </tr>
                 </tbody>
             </table>
+            <mat-paginator [length]="vendidos.length"
+              [pageSize]="pageSize"
+              (page)="cambiarPagina($event)"
+              aria-label="Select page">
+</mat-paginator>
         </div>
     </div>
 </div>

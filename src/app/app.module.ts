@@ -13,7 +13,8 @@ import { HomeComponent } from './components/home/home.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { DataService } from './services/data.service';
 import { HttpClientModule } from '@angular/common/http';
-import { HistorialComponent } from './components/historial/historial.component'
+import { HistorialComponent } from './components/historial/historial.component';
+import { MatPaginatorModule } from '@angular/material/paginator'
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { HistorialComponent } from './components/historial/historial.component'
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatPaginatorModule
   ],
   providers: [DataService],
   bootstrap: [AppComponent]

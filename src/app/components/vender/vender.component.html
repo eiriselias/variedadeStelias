@@ -3,7 +3,7 @@
     <div class="mb-3 caja">
         <div class="d-flex">            
             <label for="nombreProducto" class="form-label mx-2">Producto</label>
-            <input type="text" [(ngModel)]="nombreProducto" class="form-control mx-2" name="nombreProducto">
+            <input type="text" [(ngModel)]="nombreProducto" class="form-control mx-2" name="nombreProducto" placeholder="Buscar por productos...">
         </div>      
    
 <table class="table table-striped table-hover my-3">
@@ -18,7 +18,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let produ of productos| filter: nombreProducto; index as i">
+        <tr *ngFor="let produ of productos | filter:page: nombreProducto: pageSize; index as i">
             <th>{{produ.id}}</th>
             <th>{{produ.nombre}}</th>            
             <th>{{produ.valorUnitario}}</th>
@@ -28,6 +28,11 @@
         </tr>
     </tbody>
 </table>
+<mat-paginator [length]="productos.length"
+              [pageSize]="pageSize"
+              (page)="cambiarPagina($event)"
+              aria-label="Select page">
+</mat-paginator>
 </div>
     <h3>Datos del cliente</h3>
     <div class="mb-3 d-flex caja">

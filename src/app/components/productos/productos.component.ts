@@ -3,6 +3,7 @@ import { Producto } from 'src/app/models/productos.model';
 import { ProductosService } from 'src/app/services/productos.service';
 import { FormControl, FormGroup } from '@angular/forms';
 import { DataService } from 'src/app/services/data.service';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'productos',
@@ -10,6 +11,8 @@ import { DataService } from 'src/app/services/data.service';
   styleUrls: ['./productos.component.css']
 })
 export class ProductosComponent implements OnInit {
+  page:number=0;
+  pageSize:number=10;
 
   productos:Producto[]=[]
   producto: any;
@@ -59,4 +62,7 @@ export class ProductosComponent implements OnInit {
     this.productos = this.productos.filter(pro => pro != this.productos[this.id])
     this.data.guardarProductos(this.productos)
   } 
+  cambiarPagina(e:PageEvent){
+    this.page = e.pageIndex * e.pageSize;
+  }
 }
