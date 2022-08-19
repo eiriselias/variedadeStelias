@@ -23,7 +23,11 @@ export class ProductosService {
 
   reVendido(carro:any){
     for(let i in carro){
-      this.productos[carro[i].codigo].cantidadExistente = this.productos[carro[i].codigo].cantidadExistente - carro[i].cantidad;
+      for(let j in this.productos){
+        if(carro[i].codigo == this.productos[j].id){
+          this.productos[j].cantidadExistente -= carro[i].cantidad
+        }
+      }
     }
   }
   

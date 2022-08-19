@@ -19,12 +19,12 @@
     </thead>
     <tbody>
         <tr *ngFor="let produ of productos| filter: nombreProducto; index as i">
-            <th>{{i}}</th>
+            <th>{{produ.id}}</th>
             <th>{{produ.nombre}}</th>            
             <th>{{produ.valorUnitario}}</th>
             <th><input type="number" [(ngModel)]="cantidad" class="form-control"></th>
             <th>{{cantidad * produ.valorUnitario}}</th>
-            <th><button (click)="agregar(i)" class="btn btn-info text-white">Agregar</button></th>
+            <th><button (click)="agregar(produ.id)" class="btn btn-info text-white">Agregar</button></th>
         </tr>
     </tbody>
 </table>
