@@ -1,27 +1,35 @@
 # VariedadeStelias
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.1.0.
+Este proyecto fue generado con [Angular CLI](https://github.com/angular/angular-cli) version `14.1.0`, para los estilos se utilizo `Boostrap` y como base de datos `Firebase`.
 
-## Development server
+## Descripcion del Proyecto
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Este proyecto lo llame `VariedadeStelias` haciendo referencia a un local comercial el cual se venden productos 
+varios. Principalmente el objetivo es tener una base de datos en la cual se pueda verificar precios y ver cantidad de productos existentes, esto para facilitar y tener pendientes cuando se deba reabastecer los productos ademas este establecimiento posee una dificultad que cuando el vendedor principal no se encuentra tienen problemas al no conocer los valores de los productos, por ende esta app gracias a la base de datos podra mejorar el servicio.
 
-## Code scaffolding
+### Pagina Principal
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Esta pagina consta con un carrucel de bienvenida a la aplicacion la cual mostrara ofertas para tener encuenta.
+Cabe resaltar que esta app cuenta con un banner y un menu de navegacion para desplazarse entre sus funciones.
 
-## Build
+### Nuevos Productos
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Esta opcion como su nombre lo indica es para realizar el ingreso a productos nuevos, esta funcion esta construida sobre un `modal` la cual consta con una serie de `inputs` los cuales recopilan la informacion necesaria para los productos, ademas tiene su boton agregar y cancelar. Los datos recopilados son enviados a la base de datos en `Firebase`.
 
-## Running unit tests
+### Ver Productos 
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Esta pagina nos permite ver los productos los cuales se encuentran hasta el momento almacenados en la base de datos, al precionar sobre los productos se desplega un par de botones los cuales nos permiten hacer `modificaciones` y `eliminar` productos, esta cuenta con una `tabla` para listar los productos la cual se encuentra paginada cada 10 `items`.
 
-## Running end-to-end tests
+### Re-abastecer
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Esta funcionalidad es realizada para re-abastecer cuando los productos se estan agotando, esta cuenta con una `tabla` con los productos donde podemos identificar los productos que se estan agotando pues cuando hay menos de 5 en este producto su boton de abastecer se encuentra en color rojo para diferenciar, ademas cuenta con un `boton` para ver solo los productos que estan proximos a agotarse, estos son los que contienen menos de 5 unidades. Al igual que la tabla de ver productos se encuentra paginada cada 10 items, ademas cuenta con un `filtro` de elementos por nombre de productos.
 
-## Further help
+### Vender
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Esta opcion cuenta con otro `filtro` de productos para buscar en la `tabla` al agregar los productos son enviados al `carro de compra`, el cual va generando un listado de los productos selecionados, se debe precionar en el boton vendido para `confimar la venta`, las ventas son almacenadas para posteriormente poderse mostrar en el menu `Historial`.
+
+### Historial
+
+Historial es un listado de `ventas finalizadas` las cuales se muestra las ultimas ventas al inicio de la tabla ya que esta lista contiene un boton  de `detalles` de la compra, este al precionar muestra un `modal` el cual contiene la factura, la cual tiene nombre del establecimiento, nit, telefono, numero de factura, datos del cliente y los productos los cuales se vendieron en dicha compra.
+
+
