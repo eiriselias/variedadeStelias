@@ -9,7 +9,7 @@ import { VenderComponent } from './components/vender/vender.component';
 
 
 const routes: Routes = [      
-    {path:"",component:HomeComponent, pathMatch:'full'},
+    {path:"/",component:HomeComponent, pathMatch:'full'},
     {path:"productos",component:ProductosComponent},
     {path:"vender", component:VenderComponent},
     {path:"re-abastecer", component:ReAbastecerComponent},
